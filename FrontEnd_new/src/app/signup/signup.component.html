@@ -1,0 +1,118 @@
+
+    
+    <!-- Material form register -->
+    <div class="card mx-auto container">
+      <h3 class="card-header info-color white-text text-center py-4">
+        <strong>Sign Up</strong>
+      </h3>
+      <br />
+
+      <!--Card content-->
+      <div class="card-body px-lg-5 pt-0">
+        <!-- Form -->
+        <form 
+          [formGroup]="signupForm"
+          class="text-center form-group avoid-clicks"
+        >
+          <div class="form-row">
+            <div class="col">
+              <!-- First name -->
+              <div class="md-form">
+                <label for="fname">First name</label>
+                <input type="text" 
+                formControlName="fname" 
+                [class.is-invalid]="signupForm.get('fname')!.invalid && signupForm.get('fname')!.touched"
+                class="form-control"/>
+                
+              </div>
+              <small [class.d-none]= "signupForm.get('fname')!.valid || signupForm.get('fname')!.untouched" class="text-danger"> First name is required </small>
+
+            </div>
+
+            <div class="col">
+              <!-- Last name -->
+              <div class="md-form">
+                <label for="lname">Last name</label>
+                <input type="text" 
+                name="lname" 
+                formControlName = "lname" 
+                [class.is-invalid]="signupForm.get('lname')!.invalid && signupForm.get('lname')!.touched"
+                class="form-control" 
+                />
+                
+              </div>
+              <small [class.d-none]= "signupForm.get('lname')!.valid || signupForm.get('lname')!.untouched" class="text-danger"> Last name is required </small>
+
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div class="md-form mt-0">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              formControlName = "email"
+              [class.is-invalid]="signupForm.get('email')!.invalid && signupForm.get('email')!.touched"
+              class="form-control"
+            />
+            <div *ngIf="signupForm.get('email')!.invalid && signupForm.get('email')!.touched">
+            <small class="text-danger" *ngIf="signupForm.get('email')!.errors?.['required']"> Email is required </small>
+            <small class="text-danger" *ngIf="signupForm.get('email')!.errors?.['pattern']"> Email format incorrect </small>
+
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="md-form mt-0">
+            <label for="pwd">Password</label>
+            <input
+              type="password"
+              formControlName = "pwd"
+              class="form-control"
+              [class.is-invalid]="signupForm.get('pwd')!.invalid && signupForm.get('pwd')!.touched"
+            />
+            <div *ngIf="signupForm.get('pwd')!.invalid && signupForm.get('pwd')!.touched">
+              <small class="text-danger" *ngIf="signupForm.get('pwd')!.errors?.['required']"> Password is required </small>
+              <small class="text-danger" *ngIf="signupForm.get('pwd')!.errors?.['minlength']">Password should be atleast 8 characters</small>
+
+            </div>
+          </div>
+          <div class="md-form mt-0">
+            <label for="pwd">Confirm Password</label>
+            <input
+              type="password"
+              formControlName = "cnfrmpwd"
+              class="form-control"
+              [class.is-invalid]="signupForm.get('cnfrmpwd')!.invalid && signupForm.get('cnfrmpwd')!.touched"
+            />
+            <div *ngIf="signupForm.get('cnfrmpwd')!.invalid && signupForm.get('cnfrmpwd')!.touched">
+              <small class="text-danger" *ngIf="signupForm.get('cnfrmpwd')!.errors?.['required']"> Password is required </small>
+              <small class="text-danger" *ngIf="signupForm.get('cnfrmpwd')!.errors?.['confirmPasswordValidator']">Passwords don't match.</small>
+
+            </div>
+          </div>
+          <!-- Sign up button -->
+          <!-- <button class="btn btn-outline-info btn-rounded  my-4 waves-effect z-depth-0" type="submit">Sign Up</button> -->
+          <button
+            name="signup"
+            [disabled]="signupForm.get('fname')!.invalid || signupForm.get('lname')!.invalid || signupForm.get('email')!.invalid || signupForm.get('pwd')!.invalid || signupForm.get('cnfrmpwd')!.invalid"
+            type="button"
+            class="btn btn-success text-center"
+            (click)="signUp()"
+          >
+            Sign Up
+          </button>
+          <br />
+
+          <!-- Terms of service -->
+          <p>
+            By clicking <em>Sign Up</em> you agree to our
+            <a href="#">terms of service</a>
+          </p>
+        </form>
+        <!-- End of Form -->
+      </div>
+    </div>
+    <!-- End of Material form register -->
+
+  

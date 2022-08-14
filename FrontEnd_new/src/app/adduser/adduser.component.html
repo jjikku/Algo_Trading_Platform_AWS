@@ -1,0 +1,42 @@
+
+
+<!-- Default form add User -->
+
+<form class="container adduser text-center border border-light p-5 justify-content-center"   method="POST"
+(submit) = "addUserDetails()" [formGroup]="addUserForm">
+    
+    <p class="h4 mb-4"> Create New User  </p>
+
+    <!-- First Name -->
+    <input id="fname" formControlName="fname" 
+     name="fname" type="text"  class="form-control mb-4" placeholder="First Name">
+
+    <br>
+    <!-- Last Name -->
+    <input id="lname" formControlName="lname" 
+    name="lname" type="text"  class="form-control mb-4" placeholder="Last Name">
+
+    <br>
+    
+   <!-- Email -->
+   <input id="email" formControlName="email" 
+   name="email" type="text"  class="form-control mb-4" placeholder="Email">
+
+    <br>
+    
+    <div class="form-group">
+        <input id="pwd" formControlName="pwd" 
+        name="pwd" type="password"  class="form-control mb-4" id="exampleFormControlTextarea2" rows="3" placeholder="Password">
+    </div>
+
+    <br>
+    <div class="form-group">
+        <input id="cnfrmpwd" formControlName="cnfrmpwd" 
+        name="cnfrmpwd" type="password"  class="form-control mb-4" id="exampleFormControlTextarea2" rows="3" placeholder="Confirm Password">
+    </div>
+    <!-- Send button -->
+    <button id="addbtn" class="btn btn-success" type="submit">Save </button>
+   
+  
+</form>
+<!-- Default form contact -->

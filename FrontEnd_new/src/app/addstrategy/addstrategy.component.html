@@ -1,0 +1,117 @@
+<form class="container addstrategy text-center border border-light justify-content-center"  method="POST"
+    [formGroup]="addStrategyForm" >
+   <p class="h4 mb-2">Add Strategy Form</p>
+     <table class="mytable">
+        <tr>
+            <td colspan="4" > 
+                <input  id="stratname" maxlength="250"  formControlName="stratname" name="stratname" type="text"  class="form-control mb-4" placeholder="Strategy Name">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>entry time hh:mm:ss</div>
+                <input class="form-control select" id="entrytime" [showMaskTyped]="true" mask="00:00:00" 
+                [dropSpecialCharacters]="false"
+                formControlName="entrytime" name="entrytime" type="text" placeholder="entry time">
+            </td>
+            <td>
+                <div>exit time hh:mm:ss</div>
+                <input class="form-control select" id="exittime" [showMaskTyped]="true" mask="00:00:00" 
+                [dropSpecialCharacters]="false"
+                formControlName="exittime" name="exittime" type="text" placeholder="exit time">
+            </td>
+            <td>
+                <table>
+                <tr>
+                <td>
+                    <div>stop loss %</div>
+                    <input class="form-control selectPerc" id="slperc" [showMaskTyped]="true" mask="000" 
+                    [dropSpecialCharacters]="false"
+                    formControlName="slperc" name="slperc" type="text" placeholder="stop loss percentage">
+                </td>
+                <td>
+                    <div>profit %</div>
+                    <input class="form-control selectPerc" id="profitperc" [showMaskTyped]="true" mask="000" 
+                    [dropSpecialCharacters]="false"
+                    formControlName="profitperc" name="profitperc" type="text" placeholder="stop loss percentage">
+                </td>
+                </tr>
+                </table>
+            </td>
+            <td>
+                <!-- <div>buy sell</div>
+                <input id="buysell" formControlName="buysell" name="buysell" type="text" placeholder="buy sell"> -->
+                <div>buy sell</div>
+                <select class="form-control select"  formControlName="buysell" (change)="changeValue($event)">
+                    <option *ngFor="let buysellitem of buysellsall"  [ngValue]="buysellitem.id">{{buysellitem.name}} </option>  
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- <div>call put</div>
+                <input id="cepe" 
+                formControlName="cepe" name="cepe" type="text" placeholder="ce - call, pe - put"> -->
+                <div>call put</div>
+                <select class="form-control select"  formControlName="cepe" (change)="changeValuecepe($event)">
+                    <option *ngFor="let callputfutitem of callputfut"  [ngValue]="callputfutitem.id">{{callputfutitem.name}} </option>  
+                </select>
+            </td>
+            <td>
+                <div>strike price</div>
+                <input id="strike" class="form-control select" formControlName="strike" name="strike" type="number" placeholder="strike price">
+            </td>
+            <td>
+                <div>expiry date yyyy-mm-dd</div>
+                <input id="expiry" [showMaskTyped]="true" mask="0000-00-00"  class="form-control select"
+                [dropSpecialCharacters]="false"
+                formControlName="expiry" name="expiry" type="text" placeholder="expiry date">
+            </td>
+            <td>
+                <div>qty in lots</div>
+                <input id="qtyinlots" class="form-control select" formControlName="qtyinlots" name="qtyinlots" type="number" placeholder="qty in lots">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+               
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <button id="addstrategy" (click)="addSchedule()" class="btn btn-success float-right">add stategy criteria</button>
+            </td>
+        </tr>
+        <!-- (click)="toggleSelection(item, 1)" -->
+        <tr>
+            <td colspan="4">
+                <ul class="myul" id="liitemid" name="liitemid">
+                    Strategy Conditions 
+                    <li class="muli" *ngFor="let item of list1; let i=index" 
+                    (click)="select(i)" 
+                    [ngClass]="{'active': selectedIndex == i, 'list-group-item': true}"
+                        ><button (click)="removeItem(i)" class="btn btn-outline-danger btn-sm"> 
+                            del</button> <a>set{{item.id}}:- </a>
+                        {{item.text}}</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div id="about">strategy Description</div>
+                <textarea id="about" maxlength="700" mask="" [(ngModel)]="strategycriteria.about" formControlName="about" name="about" class="form-control rounded-0 " rows="3" placeholder="Description about strategy"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" >
+                <textarea id="strategy" mask="" readonly [(ngModel)]="strategycriteria.strategy" formControlName="strategy" name="strategy" class="form-control rounded-0 " rows="3" placeholder="Technical Details"></textarea>
+            </td>
+        </tr>
+    </table> 
+
+   <button id="addstrategy" (click)="addStrategy()" class="btn btn-success" type="submit">CREATE STRATEGY</button>
+</form>

@@ -1,0 +1,31 @@
+body{
+  /* background-image: url('../images/bg3.jpg'); */
+  background-size: cover;
+  
+}
+
+
+.card
+{
+    
+    width: 700px;
+    height:550px;
+    margin-top: 1px;
+    background: rgba(217, 190, 190, 0.8);
+    color: white;
+
+
+}
+
+footer{
+  
+  color: white;
+  background: black;
+  opacity:.75 !important;
+  
+}
+
+/* .avoid-clicks {
+  pointer-events: none;
+  
+} */

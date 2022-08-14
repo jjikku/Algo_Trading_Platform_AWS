@@ -1,0 +1,63 @@
+
+    <h1 class="display-2 bg-img text-white bg-overlay text-center"></h1>
+
+    <section>
+            <div class="container py-3" >
+              <div title="Hai" class="card">
+                    <div class="col-md-8 px-3 about">
+                      <div class="card-block px-3">
+                        <h4 class="card-title">User Details</h4>
+                        First Name   : {{ users.fname}}
+                        <br>
+                        Last Name    : {{ users.lname}}
+                        <br>
+                        Email        : {{ users.email }}
+                        <br>
+                        User Type    : {{  userType }}
+                        <br>
+                        User Status  : {{  userStatus }}
+                        <br>
+                        User Created : {{  createdUser }}
+                        <br>
+
+                        <form (submit) = "editUser(users._id)">
+                        <input type="hidden" name="id" value="{{ users._id }}">
+                        <button type="submit" class = "btn btn-success btn-sm" style="float: right;">Edit </button>
+                        <!-- <button type="submit" class = "btn btn-success btn-sm" style="float: right;"(click)="editUser(users._id)">Edit User</button> -->
+                        </form>
+
+                        <form >
+                        
+                        <input type="hidden" name="id" value="{{ users._id }}">
+                        <!-- <div  *ngIf ="userTypea" >
+                        <button id="dltbtn"  type="submit" class = "btn btn-danger btn-sm disable" style="float: right; margin-right: 25px">Block</button>
+                        </div> -->
+                        <div  *ngIf ="!userTypea">
+                            <div  *ngIf ="!userStatusa">
+                              <button id="dltbtn"  type="submit" class = "btn btn-danger btn-sm" style="float: right; margin-right: 25px" (click)="blockUser(users._id)">Block </button>
+                            </div> 
+                            <div  *ngIf ="userStatusa">
+                              <button id="dltbtn"  type="submit" class = "btn btn-danger btn-sm" style="float: right; margin-right: 25px" (click)="unBlockUser(users._id)">UnBlock </button>
+                            </div> 
+                        </div>
+                        <div  *ngIf ="userTypea">
+                            <button id="dltbtn"  type="submit" disabled class = "btn btn-danger btn-sm disable" style="float: right; margin-right: 25px" >Block </button>
+                        </div> 
+
+                        <!-- <button id="dltbtn"  type="submit" class = "btn btn-danger btn-sm" style="float: right; margin-right: 25px" (click)="blockUser(users._id)">UnBlock </button> -->
+                        
+                        </form>
+                        
+                        <form (submit) = "addUser()" >
+                        <input type="hidden" name="id" >
+                        <!-- <button id="dltbtn" type="submit" class = "btn btn-success btn-sm" style="float: right; margin-right: 25px" routerLink="/signup">Add </button> -->
+                        <button id="dltbtn" type="submit" class = "btn btn-success btn-sm" style="float: right; margin-right: 25px" >Add </button>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+              </div>
+    </section>
+
+
+

@@ -1,0 +1,52 @@
+
+
+<!-- Default form add book -->
+<!-- <form class="container addbook text-center border border-light p-5 justify-content-center" action="/singleuser/" method="POST" -->
+    <form class="container edituser text-center border border-light p-5 justify-content-center"   method="POST"
+    (submit) = "editUserDetails()" >
+    <!-- [formGroup]="editUserForm"> -->
+        <br>
+        <p class="h4 mb-4"> User Details </p>
+    
+        <!-- First Name -->
+        <!-- <input id="fname" formControlName="fname" value={{users.fname || A}}
+         name="fname" type="text"  class="form-control mb-4" placeholder="First Name"> -->
+
+        <input id="fname"  name="fname" type="text" class="form-control mb-4" value={{users.fname}}
+        [(ngModel)] = "users.fname"    placeholder="First Name">
+
+    
+        <br>
+        <!-- Last Name -->
+        <!-- <input id="lname" formControlName="lname" value={{users.lname}}
+        name="lname" type="text"  class="form-control mb-4" placeholder="Last Name"> -->
+        <input id="lname"  name="lname" type="text" class="form-control mb-4" value={{users.lname}}
+        [(ngModel)] = "users.lname"    placeholder="Last Name">
+    
+        <br>
+        
+       <!-- Email -->
+       <!-- <input id="email" formControlName="email" value={{users.email}}
+       name="email" type="text"  class="form-control mb-4" placeholder="Email"> -->
+       <input id="email"  name="email" type="text" class="form-control mb-4" value={{users.email}}
+       [(ngModel)] = "users.email"    placeholder="Email">
+    
+        <br>
+        
+        <div class="form-group">
+            <!-- <input id="pwd" formControlName="pwd" value={{users.pwd}}
+            name="pwd" type="password"  class="form-control mb-4" id="exampleFormControlTextarea2" rows="3" placeholder="Password"> -->
+            <input id="pwd"  name="pwd" type="password" class="form-control mb-4" id="exampleFormControlTextarea2" value={{users.pwd}}
+            [(ngModel)] = "users.pwd"    placeholder="Password">
+     
+        </div>
+    
+        <!-- <br> -->
+    
+        <!-- Send button -->
+        <button id="addbtn" class="btn btn-success" type="submit">Update </button>
+       
+      
+    </form>
+    <!-- Default form contact -->
+    

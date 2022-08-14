@@ -1,0 +1,43 @@
+body{
+    background-size: cover;
+}
+.navbar{
+    background:rgb(0, 0, 0);
+    opacity: .75;
+    width:100%;
+}
+#strategy{
+    height: 200px;
+}
+.editstrategy{
+    margin-top: 0px;
+    width: 55%;
+    background: rgba(217, 190, 190, 0.8);
+    color: #0d0909e0;
+    height: 90%;
+} 
+.card
+{
+    width: 700px;
+    height:550px;
+    margin-top: 100px;
+    background: black;
+    opacity: .75;
+    color: white;
+}
+footer{
+    color: white;
+    background: black;
+    opacity:.75 !important;
+}
+a{
+    color: white;
+    text-decoration: none !important;
+}
+a:hover{
+    color: white;
+}
+#about{
+    text-align: left;
+    /* height: 2px; */
+}

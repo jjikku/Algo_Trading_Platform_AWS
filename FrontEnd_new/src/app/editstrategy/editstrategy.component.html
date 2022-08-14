@@ -1,0 +1,30 @@
+<form class="container editstrategy text-center border border-light justify-content-center" 
+action="#" method="POST"
+(submit) = "editStrategy()"
+>
+<!-- [formGroup]="editStrategyForm" -->
+    <p class="h4 mb-4">Edit strategy Form</p>
+    <div id="about">strategy Name</div>
+    <input id="stratname" 
+        name="stratname" type="text"  class="form-control mb-4" value={{strategy.stratname}}
+        [(ngModel)] = "strategy.stratname"
+        placeholder="strategy Name">
+    <br>
+    <div id="about">strategy Description</div>
+    <div class="form-group">
+        <textarea id="about" 
+        name="about" class="form-control rounded-0" value={{strategy.about}}
+        [(ngModel)] = "strategy.about"
+        rows="3" placeholder="strategy Description"></textarea>
+    </div>
+    <br>
+    <div>
+    <div id="about">strategy Technical Details</div>
+    <textarea id="strategy" 
+        name="strategy" class="form-control rounded-0" value={{strategy.strategy}}
+        [(ngModel)] = "strategy.strategy"
+        rows="3" placeholder="strategy technical Details"></textarea>
+    </div>
+    <br>
+    <button id="addbtn" class="btn btn-success" type="submit">Update Book</button>
+</form>

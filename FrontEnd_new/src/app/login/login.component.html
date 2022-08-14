@@ -1,0 +1,70 @@
+
+  <body>
+    <!--Navbar-->
+    
+    <!-- modal start -->
+    <div class="modal-dialog text-center mx-auto" *ngIf="!_auth.loggedIn()">
+      <div class="col-sm-7 main-section">
+        <div class="modal-content">
+          <div class="col-12 user-img">
+            <img src="../../assets/images/face.png" />
+          </div>
+          <br />
+
+          <form 
+            class="col-12"
+            (ngSubmit) = "login()"
+            [formGroup]="loginForm"
+
+          >
+            <div class="form-group">
+              <input
+                id="uid"
+                name="email"
+                class="form-control"
+                type="email"
+                placeholder="Enter Username(email id)"
+                formControlName="email" 
+                required
+              />
+              
+            </div>
+
+            <div class="form-group">
+              <input
+                id="pwd"
+                name="pwd"
+                class="form-control"
+                type="password"
+                placeholder="Enter Password"
+                formControlName="pwd" 
+                required
+
+              />
+              
+            </div>
+
+            <button
+              id="login"
+              name="login"
+              [disabled]="loginForm.get('email')!.invalid || loginForm.get('pwd')!.invalid"
+              type="submit"
+              class="btn btn-success text-center"
+            >
+              <i class="fas fa-sign-in-alt"></i>Log in
+            </button>
+            <div>
+              <asl-google-signin-button class="btn btn-social btn-google" size='large'></asl-google-signin-button>
+            </div>
+            <small class="google_text"><strong>Login with Google</strong></small>
+          </form>
+          
+        </div>
+        <!-- modal content end-->
+      </div>
+    </div>
+    <!-- modal end -->
+
+    <br />
+
+  </body>

@@ -1,0 +1,11 @@
+.new {
+    color:white;
+    background-color: black;
+}
+
+.container{
+    background-color: white;
+    margin-top: 100px;
+    opacity: 0.75;
+    color: black;
+}

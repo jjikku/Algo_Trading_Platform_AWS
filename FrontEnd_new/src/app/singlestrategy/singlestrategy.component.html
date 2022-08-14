@@ -1,0 +1,41 @@
+
+    <h1 class="display-2 bg-img text-white bg-overlay text-center"></h1>
+
+    <section>
+            <div class="container py-3">
+              <div class="card">
+                <div class="row " *ngFor="let strat of strategy">
+                    <div class="col-md-8 px-3">
+                      <div class="card-block px-3" >
+                        <h4 class="card-title">{{ strat.stratname}}</h4>
+                        <hr>
+                        {{ strat.about}}
+                        <!-- <p class="card-text">{{ book.desc }}</p> -->
+
+                        <form (submit) = "editStrategy(strat._id)"
+                        >
+                        <input type="hidden" name="id" value="{{ strat._id }}">
+                        <button type="submit" class = "btn btn-success btn-sm" style="float: right;" routerLink="/strategy/edit/{{strat._id}}">Edit Strategy</button>
+                        
+                      </form>
+
+                        <form >
+                        <input type="hidden" name="id" value="{{ strat._id }}">
+                        <button id="dltbtn" type="submit" class = "btn btn-danger btn-sm" style="float: right; margin-right: 25px" (click)="deleteStrategy(strat._id)">Delete Strategy</button>
+                        </form>
+                        <form >
+                            <input type="hidden" name="id" value="{{ strat._id }}">
+                            <button id="deploybtn" type="submit" class = "btn btn-primary btn-sm" style="float: right; margin-right: 25px" (click)="deployStrategy(strat._id)"> Deploy </button>
+                        </form>
+    
+                        
+                      </div>
+                    </div>
+          
+                  </div>
+                </div>
+              </div>
+    </section>
+
+
+

@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 app.use("/login", loginRouter);
 app.use("/googlelogin", googleLoginRouter);
-
+app.use("/",loginRouter);
 app.use("/signup", signupRouter);
 app.use("/strategy",strategyRouter);
 app.use("/singlestrategy",singleStrategyRouter);
@@ -42,7 +42,7 @@ app.use("/singleuser", singleUserRouter);
 app.use("/edituser",editUsersRouter);
 
 
-const PORT = (process.env.PORT || 5000);
+const PORT = (process.env.PORT || 8081);
 
 app.listen(PORT, () => {
   console.log(`Server Ready on ${PORT}`);

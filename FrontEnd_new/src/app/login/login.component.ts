@@ -7,7 +7,7 @@ import { UserService } from 'src/services/user.service';
 import { SocialAuthServiceConfig, SocialUser } from '@abacritt/angularx-social-login';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import {GoogleLoginProvider } from '@abacritt/angularx-social-login';
-
+import { NavbarService } from 'src/services/navbar.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   user!: SocialUser;
   loggedIn?: boolean;
-   constructor( private userService: UserService, public _auth: AuthService, private _login:LoginperformedService, private _loginForm: UntypedFormBuilder, private router:Router, private socialAuthService: SocialAuthService) { }
+   constructor(private nav:NavbarService, private userService: UserService, public _auth: AuthService, private _login:LoginperformedService, private _loginForm: UntypedFormBuilder, private router:Router, private socialAuthService: SocialAuthService) { }
   loginForm = this._loginForm.group({
     email: ["",[Validators.required, Validators.pattern("^([a-zA-Z0-9\-\._]+)@([A-Za-z\-]+)\.([a-z]{2,3}(\.[a-z]{2,3})?)$")]],
     pwd: ["",[Validators.required,Validators.minLength(8)]]
@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
         console.log(data.token)
         console.log(data.fname);
 	      this.userService.setuser(data.fname,data.isAdmin,data.email);
+        this.nav.MenubarConditions();
 	      this.router.navigate(["/home"]);
     
       }
@@ -106,6 +107,7 @@ export class LoginComponent implements OnInit {
         console.log(data.fname);
 	      this.userService.setuser(data.fname,data.isAdmin,data.email);
         //this.userService.setuser(data.isAdmin);
+        this.nav.MenubarConditions();
 	      this.router.navigate(["/home"]);
         // if (data.isAdmin==0)
         // {
@@ -115,6 +117,7 @@ export class LoginComponent implements OnInit {
         // {
         //   this.router.navigate(["/home"]);
         // }
+        
       }
 
     })

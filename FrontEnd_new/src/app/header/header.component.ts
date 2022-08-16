@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
 import { UserService } from 'src/services/user.service';
 import { StratpnlService } from "src/services/stratpnl.service";
+import { NavbarService } from 'src/services/navbar.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { StratpnlService } from "src/services/stratpnl.service";
 export class HeaderComponent implements OnInit {
   username:any;
   IsAdm:any;
-  constructor(public _stratPnlService: StratpnlService, public userService: UserService, public _auth: AuthService) { }
+  constructor(public nav:NavbarService, public _stratPnlService: StratpnlService, public userService: UserService, public _auth: AuthService) { }
 
   ngOnInit(): void {
     

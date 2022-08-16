@@ -4,13 +4,51 @@ body{
     
   }
 .deck{
-    margin-top: 0%;
+    margin-top: 50px;
+    /* margin-bottom: 10px; */
 }
 .navbar{
     background:rgb(0, 0, 0);
     opacity: .75;
     
     width:100%;
+}
+li{
+    list-style: none;
+}
+.evenitem{
+    float: left; 
+    margin-left: 100px;
+    background-color: rgb(252, 251, 250);
+    opacity: 0.75;
+    color: rgb(8, 8, 8);
+    border-radius: 5px;
+    width: 75%;
+    margin-bottom: 10px;
+    border-color: black;
+    border: double;
+    word-wrap:break-word;
+}
+
+.odditem{
+     float: right; 
+    margin-left: 200px;
+    margin-right: 100px;
+    align-items: center;
+    background-color: rgb(11, 11, 11);
+    opacity: 0.75;
+    color:white;
+    border-radius:5px ;
+    width: 75%;
+    margin-bottom: 10px;
+    border-color: white;
+    border: double;
+    word-wrap:break-word;
+
+
+}
+.last{
+    margin-bottom: 100px;
 }
 
 h1{
@@ -34,18 +72,8 @@ img {
     padding-top: 50px;
 }
 
-.books{
-    padding-left: 75px;
-    padding-right: 75px;
-    padding-top: 50px;
-}
 
 
-
-.deck{
-    margin-top: 100px;
-
-}
 .card{
     background-color: rgba(0, 0, 0, 0.8);
 

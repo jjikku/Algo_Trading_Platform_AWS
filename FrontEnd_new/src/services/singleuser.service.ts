@@ -46,6 +46,7 @@ export class SingleuserService {
 //    return this.http.post("http://localhost:5000/singleuser/unblock/"+id,{"user":user});
 
   }
+  
   getUserAdminStatus(admstatus:any){
     console.log(admstatus);
     // if(admstatus==1)

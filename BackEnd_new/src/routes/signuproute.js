@@ -33,7 +33,7 @@ function verifyToken(req,res,next) {
     next();
   }
 
-  usersRouter.post("/adduser", verifyToken, function (req, res) {
+  usersRouter.post("/adduser", function (req, res) {
 
     var hashedPassword;
 
@@ -49,9 +49,9 @@ function verifyToken(req,res,next) {
         hashedPassword = hash;
         console.log("hashed pwd = " + hash);
         var newuser = {
-          fname: req.body.user.fname,
-          lname: req.body.user.lname,
-          email: req.body.user.email,
+          fname: req.body.signup.fname,
+          lname: req.body.signup.lname,
+          email: req.body.signup.email,
           pwd: hashedPassword,
           blockstatus:0,
           userstatus:1,

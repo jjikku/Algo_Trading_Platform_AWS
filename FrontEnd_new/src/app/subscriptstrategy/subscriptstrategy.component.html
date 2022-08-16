@@ -1,17 +1,16 @@
 
 <section class="deck">
   <div>
-    <h1 class="card-title text-center bg-dark text-white">Days Pending: {{NoDaysPending}}</h1>
+    <h1 class="card-title text-center bg-info text-white">Days Pending: {{NoDaysPending}} </h1>
   </div>
 <div class="row">
 
     <div class="col-sm-3">
       <div class="card bg-light ">
-        <div class="card-body">
-          <h5 class="card-title text-center font-weight-bold">(Rs.1)</h5>
+        <div class="card-body bg-dark">
+          <h5 class="card-title text-center font-weight-bold text-white">(Rs.1)</h5>
           <h1 class="card-text text-center text-white bg-dark">2 Days</h1>
-          <p class=" card-text font-weight-bold">Only  1 strategy can create.</p>
-          <p class="card-text font-weight-bold">Validity only 2 day.</p>
+          <p class="card-text font-weight-bold text-white text-center">Validity only 2 day.</p>
         </div>
         <div class="btn" *ngIf="PlanZeroBlocked; else planzerotemplate">
           <button class="btn btn-primary button-fill btn-lg font-weight-bold" value="0" (click)="Procedure($event)">choose plan</button>
@@ -24,11 +23,10 @@
 
     <div class="col-sm-3">
       <div class="card bg-light">
-        <div class="card-body">
-          <h5 class="card-title text-center font-weight-bold">(Rs.10)</h5>
+        <div class="card-body bg-dark" >
+          <h5 class="card-title text-center font-weight-bold text-white">(Rs.10)</h5>
           <h1 class="card-text text-center text-white bg-dark">Weekly</h1>
-          <p class="card-text font-weight-bold">Only 2 strategy can create.</p>
-          <p class="card-text font-weight-bold">Validity only 7 day.</p>
+          <p class="card-text font-weight-bold text-white text-center">Validity only 7 day.</p>
         </div>
         <div class="btn" *ngIf="PlanOneBlocked; else planOnetemplate">
           <button class="btn btn-primary button-fill  btn-lg font-weight-bold" value="1" (click)="Procedure($event)">choose plan</button>
@@ -40,12 +38,11 @@
     </div>
 
     <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body bg-light">
-            <h5 class="card-title text-center font-weight-bold">(Rs.20)</h5>
+        <div class="card bg-light">
+          <div class="card-body bg-dark">
+            <h5 class="card-title text-center font-weight-bold text-white">(Rs.20)</h5>
             <h1 class="card-text text-center text-white bg-dark">Monthly</h1>
-            <p class="card-text font-weight-bold">Only 3  strategy can create.</p>
-            <p class="card-text font-weight-bold">Validity only 1 month.(30 days)</p>
+            <p class="card-text font-weight-bold text-white text-center">Validity only 1 month.(30 days)</p>
           </div>
           <div class="btn" *ngIf="PlanTwoBlocked; else plantwoemplate">
             <button class="btn btn-primary button-fill  btn-lg font-weight-bold" value="2" (click)="Procedure($event)">choose plan</button>
@@ -56,13 +53,12 @@
         </div>
     </div>
 
-    <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body bg-light">
-            <h5 class="card-title text-center font-weight-bold">(Rs.30)</h5>
+   <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body bg-dark">
+            <h5 class="card-title text-center font-weight-bold text-white">(Rs.30)</h5>
             <h1 class="card-text text-center text-white bg-dark">Quarterly</h1>
-            <p class="card-text font-weight-bold">Only 10 strategy can create.</p>
-            <p class="card-text font-weight-bold">Validity only 3 months(90 days)</p>
+            <p class="card-text font-weight-bold text-white text-center">Validity only 3 months(90 days)</p>
           </div>
           <div class="btn" *ngIf="PlanThreeBlocked; else planthreetemplate">
             <button class="btn btn-primary button-fill btn-lg font-weight-bold" value="3" (click)="Procedure($event)">choose plan</button>
@@ -71,7 +67,7 @@
             <h3 class="p-3 mb-2 bg-info text-danger text-center">this plan subscribed</h3>
           </ng-template>
         </div>
-    </div>
+    </div> 
     <!-- <button class="btn btn-primary button-fill" value="10" (click)="subscriptionDayspending($event)">subscribedetails</button> -->
   </div>
 </section>

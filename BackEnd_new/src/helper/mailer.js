@@ -1,6 +1,6 @@
 let nodemailer = require('nodemailer')
 let config = require('../config/config')
-let EmailMaker = require('./emailMaker');
+let EmailMaker = require('./emailmaker');
 
 let transporter = nodemailer.createTransport({
     host: 'smtp.mail.yahoo.com',

@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let mailer = require('../helper/mailer');
 let razorpayInstance = require('../helper/razorpay');
-let UserSubscribeModel = require('../model/usersubscribe.Model');
+let UserSubscribeModel = require('../model/usersubscribe.model');
 
 module.exports.purchase = async (req, res) => {
     let data = req.body;
@@ -77,6 +77,8 @@ module.exports.purchase_success = async (req, res) => {
 
 module.exports.get_single_business = (req, res) => {
     try {
+        exitRoute = 1;
+
         let emailid = req.params._id;
         UserSubscribeModel.find({
             email: emailid

@@ -12,7 +12,7 @@ export class SignupService {
   signUp(item:any)
   {   
     console.log(item);
-    return this.http.post<any>(`${CommonURL.BASE_URL}/signup`,{"signup":item})
+    return this.http.post<any>(`${CommonURL.BASE_URL}/signup/adduser`,{"signup":item})
 
     //return this.http.post<any>("http://localhost:5000/signup",{"signup":item})
   }

@@ -1,22 +1,23 @@
-<section class="deck">
-  <div class="container py-3" *ngFor="let strat of strategy">
-    <div class="card">
-      <div class="row">
-        <!-- <div class="col-md-4 pic">
-                    <img class="rounded-circle" src="{{st}}" class="w-100">
-                </div> -->
-        <div class="col-md-8 px-3 about">
-          <div class="card-block px-3">
-            <h4 class="card-title">{{ strat.stratname }}</h4>
+<section class="deck mb-10">
+  <ul>
+  <li *ngFor="let strat of strategy; let i=index; let e=even; let o=odd let last=last"
+  [ngClass]="{evenitem:e,odditem:o, lastitem:last}">
+  <h4 >{{ strat.stratname }}</h4>
             strategy:{{ strat.strategy }}
             <a
               routerLink="/singlestrategy/{{ strat._id }}"
               class="btn btn-info btn-sm"
               >ReadMore</a
             >
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </li>
+  </ul>
+    <!-- <div class="card">
+      <div class="row"> -->
+        <!-- <div class="col-md-4 pic">
+                    <img class="rounded-circle" src="{{st}}" class="w-100">
+                </div> -->
+        <!-- <div class="col-md-8 px-3 about">
+          <div class="card-block px-3"> -->
+            
+          
 </section>

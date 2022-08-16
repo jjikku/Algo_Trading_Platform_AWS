@@ -149,13 +149,14 @@ async function API_Md_login (xtsMarketDataAPI) {
 
   var getQuotes = async function (getQuotesRequest) {
     //console.log(getQuotesRequest)
-    let response = await xtsMarketDataAPI.getQuotes(getQuotesRequest);
 
    
       //console.log("LTP response = " + response);
 
     try{
-      LTP = (JSON.parse(response.result.listQuotes))['LastTradedPrice'];
+      let response = await xtsMarketDataAPI.getQuotes(getQuotesRequest);
+
+      LTP = (JSON.parse((response.result.listQuotes)))['LastTradedPrice'];
 
     }
     catch(e) {

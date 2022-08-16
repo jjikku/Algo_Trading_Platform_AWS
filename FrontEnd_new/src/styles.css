@@ -1,8 +1,23 @@
 body {
   background-image: url("../src/assets/images/stock.jpeg");
   background-size: cover;
+  margin-bottom: 50px;
 }
 
 .header2 {
   margin-top: 60px;
+}
+/* .ticker
+{
+  align-items: flex-end;
+  margin-bottom: 10%;
+} */
+#tfEnygp6ivWMd25b{
+  /* position: fixed; */
+/* margin-bottom: 100px; */
+padding-top: 0;
+margin-top: 2px;
+position: sticky;
+bottom: 0;
+overflow: hidden;
 }

@@ -17,14 +17,14 @@ export class StrategyService{
     }
     getstrategy(id:any)
     {
-        return this.http.get(`${CommonURL.BASE_URL}/strategy`+id);
-
+        return this.http.get(`${CommonURL.BASE_URL}/strategy/`+id);
+        
              //return this.http.get("http://localhost:5000/strategy/"+id);
     }
     deletestrategy(id:any)
     {   
         console.log("H")
-        return this.http.delete<any>(`${CommonURL.BASE_URL}/strategy`+id);
+        return this.http.delete<any>(`${CommonURL.BASE_URL}/strategy/`+id);
 
       //return this.http.delete<any>("http://localhost:5000/strategy/"+id);
   

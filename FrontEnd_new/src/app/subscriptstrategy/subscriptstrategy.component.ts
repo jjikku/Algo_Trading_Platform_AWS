@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PayapiService } from 'src/services/payapi.service';
 import { CommonURL } from 'src/services/common';
+import { NavbarService } from './../../services/navbar.service';
 declare var Razorpay: any; 
 
 @Component({
@@ -42,7 +43,7 @@ export class SubscriptstrategyComponent implements OnInit {
     http_post:this.apiService
 };
 
-  constructor(private route: ActivatedRoute,
+  constructor(private nav:NavbarService,private route: ActivatedRoute,
     private apiService: PayapiService, private userservice: UserService, private router: Router
     ) { SubscriptstrategyComponent.API_SERVICE = this.apiService}
 
@@ -205,6 +206,8 @@ export class SubscriptstrategyComponent implements OnInit {
               console.log("error", error);
             })
         }
+
+        this.nav.MenubarConditions();
     }
 
 

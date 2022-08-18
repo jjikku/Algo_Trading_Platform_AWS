@@ -1,52 +1,103 @@
 
-
-<!-- Default form add book -->
-<!-- <form class="container addbook text-center border border-light p-5 justify-content-center" action="/singleuser/" method="POST" -->
-    <form class="container edituser text-center border border-light p-5 justify-content-center"   method="POST"
-    (submit) = "editUserDetails()" >
-    <!-- [formGroup]="editUserForm"> -->
-        <br>
-        <p class="h4 mb-4"> User Details </p>
     
-        <!-- First Name -->
-        <!-- <input id="fname" formControlName="fname" value={{users.fname || A}}
-         name="fname" type="text"  class="form-control mb-4" placeholder="First Name"> -->
-
-        <input id="fname"  name="fname" type="text" class="form-control mb-4" value={{users.fname}}
-        [(ngModel)] = "users.fname"    placeholder="First Name">
-
-    
-        <br>
-        <!-- Last Name -->
-        <!-- <input id="lname" formControlName="lname" value={{users.lname}}
-        name="lname" type="text"  class="form-control mb-4" placeholder="Last Name"> -->
-        <input id="lname"  name="lname" type="text" class="form-control mb-4" value={{users.lname}}
-        [(ngModel)] = "users.lname"    placeholder="Last Name">
-    
-        <br>
-        
-       <!-- Email -->
-       <!-- <input id="email" formControlName="email" value={{users.email}}
-       name="email" type="text"  class="form-control mb-4" placeholder="Email"> -->
-       <input id="email"  name="email" type="text" class="form-control mb-4" value={{users.email}}
-       [(ngModel)] = "users.email"    placeholder="Email">
-    
-        <br>
-        
-        <div class="form-group">
-            <!-- <input id="pwd" formControlName="pwd" value={{users.pwd}}
-            name="pwd" type="password"  class="form-control mb-4" id="exampleFormControlTextarea2" rows="3" placeholder="Password"> -->
-            <input id="pwd"  name="pwd" type="password" class="form-control mb-4" id="exampleFormControlTextarea2" value={{users.pwd}}
-            [(ngModel)] = "users.pwd"    placeholder="Password">
-     
+    <!-- Material form register -->
+    <div class="card mx-auto container ">
+        <h3 class="card-header info-color white-text text-center py-4">
+          <strong>Edit User</strong>
+        </h3>
+        <br />
+  
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0 ">
+          <!-- Form -->
+          <form 
+            [formGroup]="editUserForm"
+            class="text-center form-group avoid-clicks"
+          >
+            <div class="form-row">
+              <div class="col">
+                <!-- First name -->
+                <div class="md-form">
+                  <label for="fname">First name</label>
+                  <input type="text" 
+                  [(ngModel)] = "users.fname"
+                  formControlName="fname" 
+                  [class.is-invalid]="editUserForm.get('fname')!.invalid && editUserForm.get('fname')!.touched"
+                  class="form-control"/>
+                  
+                </div>
+                <small [class.d-none]= "editUserForm.get('fname')!.valid || editUserForm.get('fname')!.untouched" class="text-danger"> First name is required </small>
+  
+              </div>
+  
+              <div class="col">
+                <!-- Last name -->
+                <div class="md-form">
+                  <label for="lname">Last name</label>
+                  <input type="text" 
+                  name="lname" 
+                  [(ngModel)] = "users.lname"
+                  formControlName = "lname" 
+                  [class.is-invalid]="editUserForm.get('lname')!.invalid && editUserForm.get('lname')!.touched"
+                  class="form-control" 
+                  />
+                  
+                </div>
+                <small [class.d-none]= "editUserForm.get('lname')!.valid || editUserForm.get('lname')!.untouched" class="text-danger"> Last name is required </small>
+  
+              </div>
+            </div>
+  
+            <!-- E-mail -->
+            <div class="md-form mt-0">
+              <label for="email">E-mail</label>
+              <input
+                type="email"
+                [(ngModel)] = "users.email"
+                formControlName = "email"
+                [class.is-invalid]="editUserForm.get('email')!.invalid && editUserForm.get('email')!.touched"
+                class="form-control" [readonly] = "true"
+              />
+              <div *ngIf="editUserForm.get('email')!.invalid && editUserForm.get('email')!.touched">
+              <small class="text-danger" *ngIf="editUserForm.get('email')!.errors?.['required']"> Email is required </small>
+              <small class="text-danger" *ngIf="editUserForm.get('email')!.errors?.['pattern']"> Email format incorrect </small>
+  
+              </div>
+            </div>
+  
+            <!-- Password -->
+            <div class="md-form mt-0">
+              <label for="pwd">Password</label>
+              <input
+                type="password"
+                [(ngModel)] = "users.pwd"
+                formControlName = "pwd"
+                class="form-control"
+                [class.is-invalid]="editUserForm.get('pwd')!.invalid && editUserForm.get('pwd')!.touched"
+              />
+              <div *ngIf="editUserForm.get('pwd')!.invalid && editUserForm.get('pwd')!.touched">
+                <small class="text-danger" *ngIf="editUserForm.get('pwd')!.errors?.['required']"> Password is required </small>
+                <small class="text-danger" *ngIf="editUserForm.get('pwd')!.errors?.['minlength']">Password should be atleast 8 characters</small>
+  
+              </div>
+            </div>
+            <br>
+            <!-- Sign up button -->
+            <!-- <button class="btn btn-outline-info btn-rounded  my-4 waves-effect z-depth-0" type="submit">Sign Up</button> -->
+            <button
+              name="update"
+              [disabled]="editUserForm.get('fname')!.invalid || editUserForm.get('lname')!.invalid || editUserForm.get('email')!.invalid || editUserForm.get('pwd')!.invalid "
+              type="button"
+              class="btn btn-success text-center"
+              (click)="editUserDetails()"    >
+              Update
+            </button>
+            <br />
+            
+          </form>
+          <!-- End of Form -->
         </div>
-    
-        <!-- <br> -->
-    
-        <!-- Send button -->
-        <button id="addbtn" class="btn btn-success" type="submit">Update </button>
-       
-      
-    </form>
-    <!-- Default form contact -->
+      </div>
+      <!-- End of Material form register -->
+  
     

@@ -17,7 +17,7 @@ export class AdduserComponent implements OnInit {
   addUserForm = this._addUserForm.group({
     fname: ["",Validators.required],
     lname: ["",Validators.required],
-    email:["",[Validators.required,Validators.pattern("^([a-zA-Z0-9\-\._]+)@([A-Za-z\-]+)\.([a-z]{2,3}(\.[a-z]{2,3})?)$")]],
+    email:["",[Validators.required,Validators.pattern("^([a-zA-Z0-9\-\._]+)@([A-Za-z\-]+)\\.([a-z]{2,3}(\.[a-z]{2,3})?)$")]],
     pwd:["",[Validators.required,Validators.minLength(8)]],
     cnfrmpwd:["",Validators.required]
   },

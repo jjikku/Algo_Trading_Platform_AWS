@@ -15,12 +15,13 @@ import { UserService } from 'src/services/user.service';
 })
 export class EdituserComponent implements OnInit {
 
-  constructor(private editservice: UserService, private http: HttpClient, private _ActivatedRoute:ActivatedRoute, private _editUserForm: FormBuilder,private edituserservice:UserService, private router:Router) { }
+  constructor(private editservice: UserService, private http: HttpClient, private _ActivatedRoute:ActivatedRoute, 
+    private _editUserForm: FormBuilder, private edituserservice:UserService, private router:Router) { }
   editUserForm = this._editUserForm.group({
-    fname: [""],
-    lname: [""],
-    email:[""],
-    pwd:[""] 
+    fname: ["", Validators.required],
+    lname: ["",Validators.required],
+    email: ["",[Validators.required, Validators.pattern("^([a-zA-Z0-9\-\._]+)@([A-Za-z\-]+)\\.([a-z]{2,3}(\.[a-z]{2,3})?)$")]],
+    pwd: ["",[Validators.required,Validators.minLength(8)]],
 
   });
 

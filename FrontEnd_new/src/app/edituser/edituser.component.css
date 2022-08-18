@@ -1,49 +1,18 @@
 body{
-    background-image: url('../../assets/images/bg3.jpg');
     background-size: cover;
-    
-  }
-
-.navbar{
-    background:rgb(0, 0, 0);
-    opacity: .75;
-    width:100%;
+  
 }
 
-.edituser{
-    margin-top: 20px;
-    width: 750px;
-    height:500px;
+.card
+{
+    
+    width: 700px;
+    height:400px;
+    margin-top: 35px;
     background: rgba(217, 190, 190, 0.8);
-    color: white;
-}
-  
-  .card
-  {
-      
-      width: 700px;
-      height:500px;
-      margin-top: 95px;
-      background: black;
-      opacity: .75;
-      color: white;
-  
-  
-  }
+    color: black;
+    opacity: 1;
 
-footer{
-    
-    color: white;
-    background: black;
-    opacity:.75 !important;
-    
 }
 
-a{
-    color: white;
-    text-decoration: none !important;
-}
 
-a:hover{
-    color: white;
-}

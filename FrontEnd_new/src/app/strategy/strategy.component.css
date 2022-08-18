@@ -4,8 +4,8 @@ body{
     
   }
 .deck{
-    margin-top: 50px;
-    /* margin-bottom: 10px; */
+    margin-top: 0%;
+    margin-bottom: 10px;
 }
 .navbar{
     background:rgb(0, 0, 0);
@@ -27,9 +27,7 @@ li{
     margin-bottom: 10px;
     border-color: black;
     border: double;
-    word-wrap:break-word;
 }
-
 .odditem{
      float: right; 
     margin-left: 200px;
@@ -43,8 +41,6 @@ li{
     margin-bottom: 10px;
     border-color: white;
     border: double;
-    word-wrap:break-word;
-
 
 }
 .last{
@@ -72,8 +68,18 @@ img {
     padding-top: 50px;
 }
 
+.books{
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-top: 50px;
+}
 
 
+
+.deck{
+    margin-top: 100px;
+
+}
 .card{
     background-color: rgba(0, 0, 0, 0.8);
 
@@ -103,6 +109,7 @@ footer{
 
 a{
     color: white;
+    float: right;
     text-decoration: none !important;
 }
 

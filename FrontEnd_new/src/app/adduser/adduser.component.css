@@ -13,17 +13,16 @@ body{
 .adduser{
     margin-top: 5px;
     width: 750px;
-    height:500px;
     background: rgba(217, 190, 190, 0.8);
     color: #0d0909e0;
-    height: 80%;
+    height: 55%;
 }
   
   .card
   {
       
       width: 700px;
-      height:550px;
+      height:500px;
       margin-top: 95px;
       background: black;
       opacity: .75;

@@ -68,7 +68,7 @@ export class UserService {
 
   getSingleUser(id:any)
   {   
-    return this.http.get(`${CommonURL.BASE_URL}/users`+id);
+    return this.http.get(`${CommonURL.BASE_URL}/users/`+id);
 
     //return this.http.get("http://localhost:5000/users/"+id);
   }

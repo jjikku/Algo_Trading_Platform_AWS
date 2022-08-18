@@ -1,5 +1,5 @@
 body{
-    /* background-image: url('../images/bg3.jpg'); */
+   
     background-size: cover;
     
   }
@@ -32,25 +32,28 @@ img {
     padding-top: 50px;
 }
 
-.books{
-    padding-left: 75px;
-    padding-right: 75px;
-    padding-top: 50px;
+.card{
+    background-color: white;
+    opacity: .75;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+    border: double;
 }
-
 
 
 .deck{
     margin-top: 100px;
 
 }
-.card{
+/* .card{
     background-color: rgba(0, 0, 0, 0.8);
 
     color: rgb(255, 255, 255);
     margin-left: 150px;
     margin-right: 150px;
-}
+} */
 
 .card-block{
 

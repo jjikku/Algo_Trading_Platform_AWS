@@ -1,4 +1,12 @@
 .deck{
     background-color: white;
     opacity: .75;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+    border: double;
+}
+.adduser_button{
+    margin-top: 40px;
 }

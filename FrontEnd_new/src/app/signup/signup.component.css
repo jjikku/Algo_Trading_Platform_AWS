@@ -1,19 +1,16 @@
 body{
-  /* background-image: url('../images/bg3.jpg'); */
-  background-size: cover;
+    background-size: cover;
   
 }
-
 
 .card
 {
     
     width: 700px;
-    height:550px;
-    margin-top: 1px;
+    height:480px;
+    margin-top: 35px;
     background: rgba(217, 190, 190, 0.8);
     color: white;
-
 
 }
 
@@ -24,8 +21,3 @@ footer{
   opacity:.75 !important;
   
 }
-
-/* .avoid-clicks {
-  pointer-events: none;
-  
-} */

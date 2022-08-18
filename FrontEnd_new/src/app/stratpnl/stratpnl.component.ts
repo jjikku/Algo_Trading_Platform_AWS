@@ -73,9 +73,7 @@ export class StratpnlComponent implements OnInit {
         const strike = position_detail.inst.split(":")[1];
         const type = position_detail.inst.split(":")[2];
         const expiry = position_detail.inst.split(":")[3];
-        const entryPrice = parseFloat(
-          position_detail.inst.split(":")[4]
-        );
+        const entryPrice = parseFloat(position_detail.inst.split(":")[4]);
         const LTP = parseFloat(position_detail.inst.split(":")[5]);
         const qty_in = parseInt(position_detail.inst.split(":")[6]) * 25;
         const buy_sell = position_detail.inst.split(":")[7];

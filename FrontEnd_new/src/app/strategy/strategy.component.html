@@ -2,13 +2,14 @@
   <ul>
   <li *ngFor="let strat of strategy; let i=index; let e=even; let o=odd let last=last"
   [ngClass]="{evenitem:e,odditem:o, lastitem:last}">
-  <h4 >{{ strat.stratname }}</h4>
-            strategy:{{ strat.strategy }}
-            <a
+  <a
               routerLink="/singlestrategy/{{ strat._id }}"
               class="btn btn-info btn-sm"
               >ReadMore</a
             >
+  <h4 >{{ strat.stratname }}</h4>
+            strategy:{{ strat.strategy }}
+            
   </li>
   </ul>
     <!-- <div class="card">

@@ -59,7 +59,8 @@ deleteStrategy(id:any){
 }
 deployStrategy(id:any){
   console.log("Deploy strategy clicked");
-  this.router.navigate(['/deploy/'+id]);
+  //this.router.navigate(['/deploy/'+id]);
+  this.router.navigate(['/stratpnl/'+id]);
 
 }
 }

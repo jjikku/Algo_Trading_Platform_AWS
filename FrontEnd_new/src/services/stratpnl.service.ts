@@ -20,5 +20,11 @@ export class StratpnlService {
      // return this.http.get("http://localhost:5000/deploy/exit");
 
     }
-    
+    execute(id:any)
+    {
+      return this.http.get(`${CommonURL.BASE_URL}/deploy/execute/`+id);
+
+     // return this.http.get("http://localhost:5000/deploy/exit");
+
+    }
 }

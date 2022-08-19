@@ -48,7 +48,18 @@ const routes: Routes = [
   pathMatch: 'full', 
   component:AddstrategyComponent
 },
+{path:"deploy/execute/:id",    
+  // canActivate: [AuthGuard],
+  pathMatch: 'full', 
+  component:StratpnlComponent
+},
 {path:"deploy/:id",    
+  // canActivate: [AuthGuard],
+  pathMatch: 'full', 
+  component:StratpnlComponent
+},
+
+{path:"stratpnl/:id",    
   // canActivate: [AuthGuard],
   pathMatch: 'full', 
   component:StratpnlComponent

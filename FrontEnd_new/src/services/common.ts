@@ -1,6 +1,6 @@
 export class CommonURL {
-    //static BASE_URL: string = 'http://localhost:5000';
-    static BASE_URL: string = '/api';
+    static BASE_URL: string = 'http://localhost:5000';
+    //static BASE_URL: string = '/api';
 
     static SUBSCRIPTION_PLAN = [
       {

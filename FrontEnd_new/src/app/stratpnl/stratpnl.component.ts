@@ -21,34 +21,41 @@ export class StratpnlComponent implements OnInit {
   ) {}
   inst = [
     {
-      index: Number,
-      strike: String,
-      type: String,
-      expiry: String,
-      entryPrice: Number,
-      LTP: Number,
-      qty: Number,
-      pnl: Number,
+      index: Number || "----" ,
+      strike: String || "----",
+      type: String || "----",
+      expiry: String || "----",
+      entryPrice: Number || "----",
+      LTP: Number || "----",
+      qty: Number || "----",
+      pnl: Number || "---",
     },
   ];
 
   total: Number = 0;
-
   public params: any;
   public position_detail: any;
   public si_id: any;
+  public apiError:any;
+  public flag = 0;
   ngOnInit(): void {
     this.params = this._ActivatedRoute.snapshot.paramMap.get("id");
     console.log("Params Strategy PNL Route = " + this.params);
-    this.getPositions();
-    // this.si_id = setInterval(() => {
-    //   //this.findSum();
-    // }, 1000);
+    
+
   }
 
+  execute(){
+    this.stratPnlService.execute(this.params);
+    this.getPositions();
+    this.flag = 1;
+  }
+
+  
   getPositions() {
+    console.log("Inside get position");
     getServerSentEvent(
-      `${CommonURL.BASE_URL}/deploy/` + this.params,
+      `${CommonURL.BASE_URL}/deploy/execute/` + this.params,
 
       //"http://localhost:5000/deploy/" + this.params,
       this.inst
@@ -79,10 +86,10 @@ export class StratpnlComponent implements OnInit {
         const buy_sell = position_detail.inst.split(":")[7];
         const exit_flag = parseInt(position_detail.inst.split(":")[8]);
         const exit_price = parseFloat(position_detail.inst.split(":")[9]);
-
+        //const apiError = parseFloat(position_detail.inst.split(":")[10]);
         const pnl_o =
           exit_flag == 1
-            ? buy_sell == "b"
+            ? buy_sell == "s"
               ? (entryPrice - exit_price) * qty_in
               : (exit_price - entryPrice) * qty_in
             : buy_sell == "s"
@@ -122,6 +129,7 @@ export class StratpnlComponent implements OnInit {
           pnl,
         };
       });
+      
     }
     function getEventSource(url: string): EventSource {
       console.log("inside sse URL = " + url);

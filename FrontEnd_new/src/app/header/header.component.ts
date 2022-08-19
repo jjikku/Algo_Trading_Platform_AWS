@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(public nav:NavbarService, public _stratPnlService: StratpnlService, public userService: UserService, public _auth: AuthService) { }
 
   ngOnInit(): void {
-    
+    this.nav.MenubarConditions();
     
   }
   getuser(){

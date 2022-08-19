@@ -1,50 +1,56 @@
- <section>
-
-<div class="container mr-auto ml-auto">
-
+<section >
+  <div class="container mr-auto ml-auto" readonly>
     <h2>Strategy Position Details</h2>
-    <div class="table-responsive">          
-    <table class="table">
-      <thead >
+    <div class="table-responsive" *ngIf="flag==1">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Instrument</th>
+            <th>Strike</th>
+            <th>Type</th>
+            <th>Expiry</th>
+            <th>Qty</th>
+            <th>Entry Price</th>
+            <th>Ltp</th>
+            <th>PnL</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let j of inst">
+          <tr>
+            <td>BANKNIFTY_OPTIDX</td>
+            <td placeholder="">{{ j.strike }}</td>
+            <td placeholder="">{{ j.type }}</td>
+            <td placeholder="">{{ j.expiry }}</td>
+            <td placeholder="">{{ j.qty }}</td>
+            <td placeholder="">{{ j.entryPrice }}</td>
+            <td placeholder="">{{ j.LTP }}</td>
+            <td placeholder="" [style.color]="getColor(j.pnl)">{{ j.pnl }}</td>
+          </tr>
+        </tbody>
         <tr>
-          <th>Instrument</th>
-          <th>Strike</th>
-          <th>Type</th>
-          <th>Expiry</th>
-          <th>Qty</th>
-          <th>Entry Price</th>
-          <th>Ltp</th>
-          <th>PnL</th>
-
+          <th>Total</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td placeholder="" [style.color]="getColor(total)">{{ total }}</td>
         </tr>
-      </thead>
-     <tbody *ngFor="let j of inst;">
-  <tr>
-      <td> BANKNIFTY_OPTIDX </td>
-      <td placeholder=""> {{ j.strike }} </td>
-      <td placeholder=""> {{ j.type }} </td>
-      <td placeholder=""> {{ j.expiry }} </td>
-      <td placeholder=""> {{ j.qty }} </td>
-      <td placeholder=""> {{ j.entryPrice }} </td>
-      <td placeholder=""> {{ j.LTP }} </td>
-      <td placeholder="" [style.color]="getColor(j.pnl)"
-      > {{ j.pnl }} </td>
-
-  </tr>
-</tbody>
-      <tr>
-        <th>Total</th>
-        <td></td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td placeholder="" [style.color]="getColor(total)">{{ total }} </td>
-      </tr>
-    </table>
+      </table>
     </div>
-    <button id="exitbtn" type="submit" class = "btn btn-danger btn-sm" style="float: right; margin-right: 25px" (click)="exitStrategy()"> Exit All Positions </button>
-
+   
+    <button
+      id="exitbtn"
+      type="submit"
+      class="btn btn-danger"
+      style="float: right; margin-right: 25px;"
+      (click)="exitStrategy()"
+    >
+      Exit All Positions
+    </button>
+    <button class="btn btn-primary" 
+    style="float: right; margin-right: 75px;"
+    (click)="execute()">Get Positions</button>
   </div>
 </section>

@@ -15,7 +15,7 @@ const {
 const order_array = [];
 var order = [];
 global.exitRoute;
-global.apiError = 0;
+global.stopSSE = 0;
 
 // Loaded from DB on deploy
 //function dummy_straddle() {var s, ce, pe;var set1 = set_n("09:16:00","15:25:00",40,"s","CE",37900,"2022-08-04",10);var set2 = set_n("09:16:00","15:25:00",40,"s","PE",37900,"2022-08-04",10);var set3 = set_n("09:20:00","15:20:00",60,"s","PE",38000,"2022-08-04",20);var set4 = set_n("09:25:00","15:20:00",60,"s","CE",38000,"2022-08-04",20);function set_n(entry_time,exit_time,stop_loss_percentage,buy_sell,ce_pe,strike,expiry,qty_in_lots) {var set_params = {entry_time: entry_time,buy_sell: buy_sell,exit_time: exit_time,stop_loss_percentage: stop_loss_percentage,ce_pe: ce_pe,strike: strike,expiry: expiry,qty_in_lots: qty_in_lots,};return set_params;}return [set1, set2, set3, set4];}
@@ -43,6 +43,8 @@ async function execution_engine(strategy, res) {
     var exit_price = [];
     var strike = [];
     var res_data = [];
+    var exited = [];
+    var exitSSE = [];
     console.log("Strategy = " + strategy);
     //await API_Md_login();
     let xts = await getxts();
@@ -61,6 +63,7 @@ async function execution_engine(strategy, res) {
     for (j = 0; j < set_length; j++) {
       exit_flag[j] = 0;
       price_flag[j] = 0;
+      exited[j] = 0;
     }
 
     console.log("exit = " + exit_flag);
@@ -123,7 +126,7 @@ async function execution_engine(strategy, res) {
                 entry_secs[i] = parseInt(element.entry_time.split(":")[2]);
                 if (curr_hrs[i] > entry_hrs[i] && !flag[i]) {
                   flag[i] = 1;
-                  entry_price[i] = await placeOrder(
+                  entry_price[i] = await placeEntryOrder(
                     buy_sell[i],
                     flag[i] ? element.qty_in_lots : 0,
                     inst_id[i]
@@ -143,7 +146,7 @@ async function execution_engine(strategy, res) {
                 } else if (curr_hrs[i] == entry_hrs[i] && !flag[i]) {
                   if (curr_mins[i] > entry_mins[i]) {
                     flag[i] = 1;
-                    await placeOrder(
+                    entry_price[i] = await placeEntryOrder(
                       buy_sell[i],
                       flag[i] ? element.qty_in_lots : 0,
                       inst_id[i]
@@ -163,7 +166,7 @@ async function execution_engine(strategy, res) {
                   } else if (curr_mins[i] == entry_mins[i]) {
                     if (curr_secs[i] >= entry_secs[i]) {
                       flag[i] = 1;
-                      entry_price[i] = await placeOrder(
+                      entry_price[i] = await placeEntryOrder(
                         buy_sell[i],
                         flag[i] ? element.qty_in_lots : 0,
                         inst_id[i]
@@ -234,12 +237,15 @@ async function execution_engine(strategy, res) {
                     exit_flag[i] = 1;
 
                     //order[i] = {inst:ce_inst[i],strike:ce_strike[i],expiry:ce_expiry[i],buy_sell:buy_sell,qty:ce_qty[i]};
-                    exit_price[i] = await placeOrder(
+                    exited[i] = await placeExitOrder(
                       buy_sell,
                       flag[i] ? element.qty_in_lots : 0,
                       inst_id[i]
                     );
                     price_flag[i] = 1;
+                    exit_price[i] = parseFloat(exited[i].split(":")[0]);  
+                    exitSSE[i] = parseInt(exited[i].split(":")[1]);  
+
                     console.log(
                       "EXIT - inst ID = " +
                         buy_sell +
@@ -303,12 +309,14 @@ async function execution_engine(strategy, res) {
                     exit_flag[i] = 1;
 
                     //order[i] = {inst:ce_inst[i],strike:ce_strike[i],expiry:ce_expiry[i],buy_sell:buy_sell,qty:ce_qty[i]};
-                    exit_price[i] = await placeOrder(
+                    exited[i] = await placeExitOrder(
                       buy_sell,
                       flag[i] ? element.qty_in_lots : 0,
                       inst_id[i]
                     );
                     price_flag[i] = 1;
+                    exit_price[i] = parseFloat(exited[i].split(":")[0]);  
+                    exitSSE[i] = parseInt(exited[i].split(":")[1]);  
 
                     console.log(
                       "EXIT - inst ID = " +
@@ -333,6 +341,39 @@ async function execution_engine(strategy, res) {
 
               // console.log("entry =" + entry_price[i]);
               // console.log("exit =" + exit_price[i] + "flag = " + exit_flag[i]);
+              const isTrue = (currentValue) => currentValue == 1;
+
+              if (price_flag.every(isTrue)) {
+                //console.log("EXIT = exited " + inst_id[i]);
+                if(exitSSE.every(isTrue))
+                {
+                  exitRoute = 1;
+                  stopSSE = 1;
+
+                  res.write(`id: ${i}\n`);
+              res.write("event: LTP\n");
+              res_data[i] =
+                i +
+                ":" +
+                strike[i] +
+                ":" +
+                entry_price[i] +
+                ":" +
+                LTP[i] +
+                ":" +
+                element.qty_in_lots +
+                ":" +
+                buy_sell[i] +
+                ":" +
+                exit_flag[i] +
+                ":" +
+                exit_price[i] +
+                ":" +
+                stopSSE;
+              res.write(`data: ${JSON.stringify({ inst: res_data[i] })}\n\n`);
+              
+              res.flush;
+
 
               res.write(`id: ${i}\n`);
               res.write("event: LTP\n");
@@ -353,22 +394,73 @@ async function execution_engine(strategy, res) {
                 ":" +
                 exit_price[i] +
                 ":" +
-                apiError;
+                stopSSE;
               res.write(`data: ${JSON.stringify({ inst: res_data[i] })}\n\n`);
-
+              
               res.flush;
 
-              const isTrue = (currentValue) => currentValue == 1;
 
-              if (price_flag.every(isTrue)) {
-                //console.log("EXIT = exited " + inst_id[i]);
-                exitRoute = 1;
-                clearInterval(id);
-                return;
+              res.write(`id: ${i}\n`);
+              res.write("event: LTP\n");
+              res_data[i] =
+                i +
+                ":" +
+                strike[i] +
+                ":" +
+                entry_price[i] +
+                ":" +
+                LTP[i] +
+                ":" +
+                element.qty_in_lots +
+                ":" +
+                buy_sell[i] +
+                ":" +
+                exit_flag[i] +
+                ":" +
+                exit_price[i] +
+                ":" +
+                stopSSE;
+              res.write(`data: ${JSON.stringify({ inst: res_data[i] })}\n\n`);
+              
+              res.flush;
+              
+
+                  clearInterval(id);
+                  return;
+                }
+                
               }
+              
+              res.write(`id: ${i}\n`);
+              res.write("event: LTP\n");
+              res_data[i] =
+                i +
+                ":" +
+                strike[i] +
+                ":" +
+                entry_price[i] +
+                ":" +
+                LTP[i] +
+                ":" +
+                element.qty_in_lots +
+                ":" +
+                buy_sell[i] +
+                ":" +
+                exit_flag[i] +
+                ":" +
+                exit_price[i] +
+                ":" +
+                stopSSE;
+              res.write(`data: ${JSON.stringify({ inst: res_data[i] })}\n\n`);
+              
+              res.flush;
+
+              
+
+              
             }, 1000);
 
-            async function placeOrder(buy_sell, qty, inst_id) {
+            async function placeEntryOrder(buy_sell, qty, inst_id) {
               var buy_or_sell = buy_sell == "s" ? "SELL" : "BUY";
               order = { inst: inst_id, buy_sell: buy_or_sell, qty: qty };
               console.log("inst id order placement = " + inst_id);
@@ -382,6 +474,24 @@ async function execution_engine(strategy, res) {
               console.log("TRADE EXECUTED PRICE = " + order_details.tradeprice);
               return order_details.tradeprice;
             }
+          }
+
+
+          async function placeExitOrder(buy_sell, qty, inst_id) {
+            var buy_or_sell = buy_sell == "s" ? "SELL" : "BUY";
+            order = { inst: inst_id, buy_sell: buy_or_sell, qty: qty };
+            console.log("inst id order placement = " + inst_id);
+            var exited = 0
+            order_details = await executeTradeAPI(
+              inst_id,
+              25 * parseInt(qty),
+              buy_or_sell,
+              xts_int
+            );
+            exited = 1;
+            //push_order_array(order);
+            console.log("TRADE EXECUTED PRICE = " + order_details.tradeprice);
+            return order_details.tradeprice + ":" + exited;
           }
         },
       });

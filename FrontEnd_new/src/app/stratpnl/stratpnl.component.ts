@@ -21,14 +21,15 @@ export class StratpnlComponent implements OnInit {
   ) {}
   inst = [
     {
-      index: Number || "----" ,
-      strike: String || "----",
-      type: String || "----",
-      expiry: String || "----",
-      entryPrice: Number || "----",
-      LTP: Number || "----",
-      qty: Number || "----",
-      pnl: Number || "---",
+      index: Number,
+      strike: String,
+      type: String,
+      expiry: String,
+      entryPrice: Number,
+      LTP: Number,
+      qty: Number,
+      pnl: Number,
+      stopSSE: Number,
     },
   ];
 
@@ -36,22 +37,19 @@ export class StratpnlComponent implements OnInit {
   public params: any;
   public position_detail: any;
   public si_id: any;
-  public apiError:any;
+  public apiError: any;
   public flag = 0;
   ngOnInit(): void {
     this.params = this._ActivatedRoute.snapshot.paramMap.get("id");
     console.log("Params Strategy PNL Route = " + this.params);
-    
-
   }
 
-  execute(){
+  execute() {
     this.stratPnlService.execute(this.params);
     this.getPositions();
     this.flag = 1;
   }
 
-  
   getPositions() {
     console.log("Inside get position");
     getServerSentEvent(
@@ -86,7 +84,8 @@ export class StratpnlComponent implements OnInit {
         const buy_sell = position_detail.inst.split(":")[7];
         const exit_flag = parseInt(position_detail.inst.split(":")[8]);
         const exit_price = parseFloat(position_detail.inst.split(":")[9]);
-        //const apiError = parseFloat(position_detail.inst.split(":")[10]);
+        const stopSSE = parseInt(position_detail.inst.split(":")[10]);
+
         const pnl_o =
           exit_flag == 1
             ? buy_sell == "s"
@@ -102,10 +101,10 @@ export class StratpnlComponent implements OnInit {
             ? 0
             : qty_in;
         const pnl = pnl_o.toFixed(2);
-
-        console.log("qty = " + qty);
-        console.log("pnl = " + pnl);
-        console.log("exit = " + exit_price + "flag = " + exit_flag);
+        
+        //console.log("qty = " + qty);
+        //console.log("pnl = " + pnl);
+        //console.log("exit = " + exit_price + "flag = " + exit_flag);
         console.log(
           index,
           strike,
@@ -116,8 +115,20 @@ export class StratpnlComponent implements OnInit {
           exit_flag,
           LTP,
           qty,
-          pnl
+          pnl,
+          stopSSE
         );
+
+        const isTrue = (currentValue: any) => currentValue == 1;
+
+        const stop_event = inst.every((el: { stopSSE: number; }) => el.stopSSE == 1);
+
+        
+        if (stop_event) {
+          console.log("SSE Event Stream connection closing");
+          eventSource.close();
+        }
+
         inst[index] = {
           index,
           strike,
@@ -127,9 +138,9 @@ export class StratpnlComponent implements OnInit {
           LTP,
           qty,
           pnl,
+          stopSSE,
         };
       });
-      
     }
     function getEventSource(url: string): EventSource {
       console.log("inside sse URL = " + url);
@@ -140,26 +151,26 @@ export class StratpnlComponent implements OnInit {
 
   getColor(value: any) {
     this.findSum();
-    console.log("value =" + value);
+    //console.log("value =" + value);
     if (value >= 0) {
-      console.log("green");
+      //console.log("green");
       return "green";
     } else {
-      console.log("red");
+      //console.log("red");
       return "red";
     }
   }
   findSum() {
     let sum = 0;
-    console.log("inside findsum =");
+    //console.log("inside findsum =");
     this.inst.forEach((element) => {
       const pnl = element.pnl.toString();
-      console.log("inside findsum pnl =" + pnl);
+      //console.log("inside findsum pnl =" + pnl);
 
       sum = parseFloat((parseFloat(pnl) + sum).toFixed(2));
     });
     this.total = sum;
-    console.log("total = " + this.total);
+    //console.log("total = " + this.total);
   }
 
   exitStrategy() {
@@ -171,3 +182,5 @@ export class StratpnlComponent implements OnInit {
     });
   }
 }
+
+

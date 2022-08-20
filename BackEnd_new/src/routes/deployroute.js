@@ -39,7 +39,7 @@ deployRouter.get("/exit", function (req, res) {
  //deployRouter.get("/:id", verifyToken, function(req,res){
 deployRouter.get("/execute/:id", function (req, res) {
     exitRoute = 0;
-    apiError = 0;
+    stopSSE = 0;
   const headers = {
     "Content-Type": "text/event-stream",
     Connection: "keep-alive",

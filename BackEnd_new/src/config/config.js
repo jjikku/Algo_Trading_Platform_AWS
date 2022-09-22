@@ -1,5 +1,5 @@
 let emaillocal = "aneeshvdas@yahoo.co.in";
-let emailPasslocal = 'zznxbrqopbfdpqah'
+let emailPasslocal = 'xxx'
 module.exports = {
     EMAIL:emaillocal,
     EMAILPASS:emailPasslocal,
